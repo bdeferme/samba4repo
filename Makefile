@@ -40,20 +40,20 @@ SAMBAPKGS+=samba-4.13.x-srpm
 REPOS+=samba4repo/el/7
 REPOS+=samba4repo/el/8
 REPOS+=samba4repo/fedora/33
-REPOS+=samba4repo/amz/2
+REPOS+=samba4repo/amazon/2
 
 REPODIRS := $(patsubst %,%/x86_64/repodata,$(REPOS)) $(patsubst %,%/SRPMS/repodata,$(REPOS))
 
-CFGS+=samba4repo-7-x86_64.cfg
-CFGS+=samba4repo-8-x86_64.cfg
-CFGS+=samba4repo-f33-x86_64.cfg
+#CFGS+=samba4repo-7-x86_64.cfg
+#CFGS+=samba4repo-8-x86_64.cfg
+#CFGS+=samba4repo-f33-x86_64.cfg
 # Amazon 2 config
 CFGS+=samba4repo-amz2-x86_64.cfg
 
 # Link from /etc/mock
-MOCKCFGS+=epel-7-x86_64.cfg
-MOCKCFGS+=epel-8-x86_64.cfg
-MOCKCFGS+=fedora-33-x86_64.cfg
+#MOCKCFGS+=epel-7-x86_64.cfg
+#MOCKCFGS+=epel-8-x86_64.cfg
+#MOCKCFGS+=fedora-33-x86_64.cfg
 MOCKCFGS+=amazonlinux-2-x86_64.cfg
 
 all:: install
@@ -200,7 +200,7 @@ samba4repo-amz2-x86_64.cfg: /etc/mock/amazonlinux-2-x86_64.cfg
 	@echo "Disabling 'best=' for $@"
 	@sed -i '/^best=/d' $@
 	@echo "best=0" >> $@
-	@echo "config_opts['dnf.conf'] += \"\"\"" >> $@
+	@echo "config_opts['yum.conf'] += \"\"\"" >> $@
 	@echo '[samba4repo]' >> $@
 	@echo 'name=samba4repo' >> $@
 	@echo 'enabled=1' >> $@
