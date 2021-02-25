@@ -60,15 +60,18 @@ and installed in the following order.
 * make cfgs # Create local .cfg configs for "mock".
 * * epel-7-x86_64.cfg # Used for some Makefiles
 * * epel-8-x86_64.cfg # Used for some Makefiles
-* * fedora-33-x86_64.cfg # Used for some Makefiles
+* * fedora-34-x86_64.cfg # Used for some Makefiles
 * * samba4repo-7-x86_64.cfg # Activates local RPM dependency repository
 * * samba4repo-8-x86_64.cfg # Activates local RPM dependency repository
-* * samba4repo-f33-x86_64.cfg # Activates local RPM dependency repository
+* * samba4repo-f34-x86_64.cfg # Activates local RPM dependency repository
+# * amazonlinux-2-x86_64.cfg # Used for some Makefiles
+* * samba4repo-amz2-x86_64.cfg
 
 * make repos # Creates local local yum repositories in $PWD/samba4repo
 * * samba4repo/el/7
 * * samba4repo/el/8
-* * samba4repo/fedora/33
+* * samba4repo/fedora/34
+* * samba4repo/samba4repo/amazon/
 
 * make # Make all distinct versions using "mock"
 
