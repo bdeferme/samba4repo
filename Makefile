@@ -10,8 +10,18 @@
 #REOBASEE=http://localhost
 REPOBASE=file://$(PWD)
 
-# RHEL 7 needs compat-nettle34-3.x, which uses epel-7-x86_64
+# RHEL 7 and Amazon Linux 2 needs compat-nettle34-3.x,
+# matching OS matching .cfg files
 SAMBAPKGS+=compat-nettle34-3.x-srpm
+
+# Amazon Linux 2 datefudge for compat-gnutls3.6.3.x-sprm
+SAMBAPKGS+=datefudge-srpm
+
+# Amazon Linux 2 liblldb needs this
+SAMBAPKGS+=cmocka-1.1.x-srpm
+
+# Amazon Linux 2 liblldb needs this
+SAMBAPKGS+=lmdb-srpm
 
 # Current libtalloc-2.x required
 SAMBAPKGS+=libtalloc-2.3.x-srpm
@@ -21,6 +31,9 @@ SAMBAPKGS+=libtdb-1.4.x-srpm
 
 # Current libtevent-0.10.x required for Samba 4.10
 SAMBAPKGS+=libtevent-0.10.x-srpm
+
+# Amazon Linux 2 datefudghe for compat-gnutls3.6.3.x-sprm
+SAMBAPKGS+=datefudge-srpm
 
 # RHEL 7 needs compat-gnutls3.6.3.x-sprm, which uses compat-nettle34
 SAMBAPKGS+=compat-gnutls36-3.x-srpm
@@ -133,6 +146,7 @@ samba4repo-7-x86_64.cfg: /etc/mock/epel-7-x86_64.cfg
 	@echo 'skip_if_unavailable=False' >> $@
 	@echo 'metadata_expire=0' >> $@
 	@echo 'gpgcheck=0' >> $@
+	@echo 'priority=5' >> $@
 	@echo '"""' >> $@
 
 samba4repo-8-x86_64.cfg: /etc/mock/epel-8-x86_64.cfg
@@ -152,6 +166,7 @@ samba4repo-8-x86_64.cfg: /etc/mock/epel-8-x86_64.cfg
 	@echo 'skip_if_unavailable=False' >> $@
 	@echo 'metadata_expire=0' >> $@
 	@echo 'gpgcheck=0' >> $@
+	@echo 'priority=5' >> $@
 	@echo '"""' >> $@
 
 samba4repo-f33-x86_64.cfg: /etc/mock/fedora-33-x86_64.cfg
@@ -171,6 +186,7 @@ samba4repo-f33-x86_64.cfg: /etc/mock/fedora-33-x86_64.cfg
 	@echo 'skip_if_unavailable=False' >> $@
 	@echo 'metadata_expire=0' >> $@
 	@echo 'gpgcheck=0' >> $@
+	@echo 'priority=5' >> $@
 	@echo '"""' >> $@
 
 samba4repo-rawhide-x86_64.cfg: /etc/mock/fedora-rawhide-x86_64.cfg
@@ -190,6 +206,7 @@ samba4repo-rawhide-x86_64.cfg: /etc/mock/fedora-rawhide-x86_64.cfg
 	@echo 'skip_if_unavailable=False' >> $@
 	@echo 'metadata_expire=0' >> $@
 	@echo 'gpgcheck=0' >> $@
+	@echo 'priority=5' >> $@
 	@echo '"""' >> $@
 
 samba4repo-amz2-x86_64.cfg: /etc/mock/amazonlinux-2-x86_64.cfg
@@ -209,6 +226,7 @@ samba4repo-amz2-x86_64.cfg: /etc/mock/amazonlinux-2-x86_64.cfg
 	@echo 'skip_if_unavailable=False' >> $@
 	@echo 'metadata_expire=0' >> $@
 	@echo 'gpgcheck=0' >> $@
+	@echo 'priority=5' >> $@
 	@echo '"""' >> $@
 
 $(MOCKCFGS)::
@@ -224,6 +242,10 @@ samba4repo.repo:: Makefile samba4repo.repo.in
 		cat $@.in | \
 			sed "s|@REPOBASEDIR@/|$(PWD)/|g" | \
 			sed "s|/@RELEASEDIR@/|/el/|g" > $@; \
+	elif [ -s /usr/bin/amazon-linux-extras ]; then \
+		cat $@.in | \
+			sed "s|@REPOBASEDIR@/|$(PWD)/|g" | \
+			sed "s|/@RELEASEDIR@/|/amazon/|g" > $@; \
 	else \
 		echo Error: unknown release, check /etc/*-release; \
 		exit 1; \
