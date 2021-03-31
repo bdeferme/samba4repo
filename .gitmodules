@@ -28,4 +28,4 @@
 	branch = master
 [submodule "quota-4.x-srpm"]
 	path = quota-4.x-srpm
-	url = https://github.com/nkadel/quota-4.x-srpm
+	url = https://github.com/bdeferme/quota-4.x-srpm
