@@ -42,23 +42,23 @@ SAMBAPKGS+=libldb-2.2.x-srpm
 SAMBAPKGS+=samba-4.13.x-srpm
 
 REPOS+=samba4repo/el/7
-REPOS+=samba4repo/el/8
-REPOS+=samba4repo/fedora/33
-REPOS+=samba4repo/amz/2
+#REPOS+=samba4repo/el/8
+#REPOS+=samba4repo/fedora/33
+#REPOS+=samba4repo/amz/2
 
 REPODIRS := $(patsubst %,%/x86_64/repodata,$(REPOS)) $(patsubst %,%/SRPMS/repodata,$(REPOS))
 
 CFGS+=samba4repo-7-x86_64.cfg
-CFGS+=samba4repo-8-x86_64.cfg
-CFGS+=samba4repo-f33-x86_64.cfg
+#CFGS+=samba4repo-8-x86_64.cfg
+#CFGS+=samba4repo-f33-x86_64.cfg
 # Amazon 2 config
-CFGS+=samba4repo-amz2-x86_64.cfg
+#CFGS+=samba4repo-amz2-x86_64.cfg
 
 # Link from /etc/mock
 MOCKCFGS+=epel-7-x86_64.cfg
-MOCKCFGS+=centos-stream-x86_64.cfg
-MOCKCFGS+=fedora-33-x86_64.cfg
-MOCKCFGS+=amazonlinux-2-x86_64.cfg
+#MOCKCFGS+=centos-stream-x86_64.cfg
+#MOCKCFGS+=fedora-33-x86_64.cfg
+#MOCKCFGS+=amazonlinux-2-x86_64.cfg
 
 all:: install
 
