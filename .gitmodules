@@ -1,6 +1,6 @@
 [submodule "compat-nettle34-3.x-srpm"]
 	path = compat-nettle34-3.x-srpm
-	url = https://github.com/bdeferme/compat-nettle34-3.x-srpm
+	url = https://github.com/nkadel/compat-nettle34-3.x-srpm
 	branch = master
 [submodule "libtalloc-2.3.x-srpm"]
 	path = libtalloc-2.3.x-srpm
@@ -28,4 +28,4 @@
 	branch = master
 [submodule "quota-4.x-srpm"]
 	path = quota-4.x-srpm
-	url = https://github.com/bdeferme/quota-4.x-srpm
+	url = https://github.com/nkadel/quota-4.x-srpm
